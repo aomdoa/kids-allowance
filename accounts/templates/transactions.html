@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<h1>
+    <a href="{% url 'index' %}">Accounts</a> | {{ account }}
+</h1>
+<h2>${{ account.balance }}</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+{% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.transactionDate }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>${{ transaction.amount }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+<div>
+    <a href="{% url 'debit' account.id %}" class="btn btn-default account-button">Debit</a>
+    <a href="{% url 'credit' account.id %}" class="btn btn-default account-button">Credit</a>
+</div>
+            
+{% endblock %}

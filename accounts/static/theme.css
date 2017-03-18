@@ -1,0 +1,12 @@
+.account-button {
+	width: 10em;
+}
+
+table.accounts > tbody > tr > td {
+	font-size: 16px;
+	line-height: 32px;
+}
+
+body {
+	font-family: Arial
+}
