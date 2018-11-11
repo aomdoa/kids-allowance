@@ -1,0 +1,16 @@
+{
+  "name": "kids-allowance",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aomdoa/kids-allowance.git",
+  "author": "David Shurgold <david.shurgold@cineplex.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  },
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  }
+}
