@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:aomdoa/kids-allowance.git",
-  "author": "David Shurgold <david.shurgold@cineplex.com>",
-  "license": "MIT",
+  "author": "David Shurgold <aomdoa@gmail.com>",
+  "license": "GPL-3.0",
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "prisma": "^1.23.4"
   },
   "scripts": {
     "client": "cd client && yarn start",
