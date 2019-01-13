@@ -1,0 +1,27 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  birthday: DateTime!
+  isAdmin: Boolean @default(value: "false")
+  accounts: [Account!]!
+}
+
+type Account {
+  id: ID! @unique
+  name: String!
+  balance: Float!
+  allowance: Float!
+  interest: Float!
+  owner: User!
+  transactions: [Transaction!]!
+}
+
+type Transaction {
+  id: ID! @unique
+  description: String!
+  amount: Float!
+  createdAt: DateTime!
+  account: Account! 
+}

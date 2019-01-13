@@ -1,0 +1,50 @@
+scalar GraphQLDate
+scalar EmailAddress
+scalar NonNegativeFloat
+scalar DateTime
+
+type Query {
+  users: [User!]!
+  accounts(userId: ID!): [Account!]!
+  transactions(accountId: ID!, skip: Int, first: Int): [Transaction!]!
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthPayload
+  createUser(name: String!, email: EmailAddress!, password: String! birthday: GraphQLDate, isAdmin: Boolean): User
+  updateUser(id: ID!, name: String, email: EmailAddress, password: String, birthday: GraphQLDate, isAdmin: Boolean): User
+  createAccount(name: String!, ownerId: ID!, allowance: NonNegativeFloat, interest: NonNegativeFloat): Account
+  updateAccount(id: ID!, name: String, allowance: NonNegativeFloat, interest: NonNegativeFloat): Account
+  reconcileAccount(id: ID!): Account
+  addTransaction(accountId: ID!, description: String!, amount: Float!): Transaction
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: EmailAddress!
+  birthday: GraphQLDate!
+  isAdmin: Boolean
+}
+
+type Account {
+  id: ID!
+  name: String!
+  balance: Float!
+  allowance: NonNegativeFloat!
+  interest: NonNegativeFloat!
+  user: User!
+}
+
+type Transaction {
+  id: ID!
+  description: String!
+  amount: Float!
+  date: DateTime!
+  account: Account!
+}
