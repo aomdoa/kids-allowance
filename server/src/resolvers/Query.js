@@ -7,8 +7,10 @@ async function users (parent, args, context) {
 
 async function accounts (parent, args, context) {
   const currentUser = getUser(context)
-  if (currentUser.id !== args.userId && !currentUser.isAdmin) {
-    throw new Error('Only admin can look at other accounts')
+  if (currentUser.isAdmin && !args.userId) {
+    return context.prisma.accounts()
+  } else if (!args.userId) {
+    args.userId = currentUser.userId
   }
   return context.prisma.accounts({ where: { owner: { id: args.userId } } })
 }

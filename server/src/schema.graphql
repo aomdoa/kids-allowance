@@ -5,7 +5,7 @@ scalar DateTime
 
 type Query {
   users: [User!]!
-  accounts(userId: ID!): [Account!]!
+  accounts(userId: ID): [Account!]!
   transactions(accountId: ID!, skip: Int, first: Int): [Transaction!]!
 }
 
