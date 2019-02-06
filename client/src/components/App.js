@@ -22,6 +22,7 @@ export default class App extends Component {
             <Route exact path="/accounts/create" component={CreateAccount} />
             <Route exact path="/users" component={UserList} />
             <Route exact path="/users/create" component={CreateUser} />
+            <Route exact path="/users/edit/:id" component={CreateUser} />
           </Switch>
         </div>
       </div>

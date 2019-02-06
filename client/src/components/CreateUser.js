@@ -7,7 +7,7 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const CREATE_USER = gql`
-  mutation CreateUser($name: String!, $email: String!, $password: String!, $birthday: Date, $isAdmin: Boolean) {
+  mutation CreateUser($name: String!, $email: EmailAddress!, $password: String!, $birthday: GraphQLDate, $isAdmin: Boolean) {
     createUser(name: $name, email: $email, password: $password, birthday: $birthday, isAdmin: $isAdmin) {
       id
       name
@@ -24,7 +24,7 @@ export default class CreateUser extends Component {
     this.state = {
       name: '',
       email: '',
-      birthday: new Date(),
+      birthday: moment().format('YYYY-MM-DD'),
       isAdmin: false,
       password: '',
       passwordCheck: '',
@@ -105,9 +105,9 @@ export default class CreateUser extends Component {
             <div>
               <label>Birthday</label>
               <DatePicker
-                onChange={date => this.setState({ birthday: date })}
+                onChange={date => this.setState({ birthday: moment(date).format('YYYY-MM-DD') })}
                 onBlur={() => this.validateBirthday()}
-                selected={birthday}
+                selected={moment(birthday).toDate()}
                 dateFormat='yyyy-MM-dd'
               />
               {birthdayError}
@@ -144,14 +144,17 @@ export default class CreateUser extends Component {
             </div>
           </fieldset>
           <div>
-            <Mutation mutation={CREATE_USER} variables={{ name, email, birthday, isAdmin, password }} onError={error => window.alert(error)}>
-              {mutation => (
-                <input
-                  type="button"
-                  value="Create"
-                  disabled={!name || !email || !birthday || !password || !passwordCheck || nameError || emailError || birthdayError || passwordError || passwordCheckError}
-                  onClick={mutation}
-                />
+            <Mutation mutation={CREATE_USER} variables={{ name, email, birthday, isAdmin, password }}>
+              {(mutation, { error }) => (
+                <div>
+                  <input
+                    type="button"
+                    value="Create"
+                    disabled={!name || !email || !birthday || !password || !passwordCheck || nameError || emailError || birthdayError || passwordError || passwordCheckError}
+                    onClick={mutation}
+                  />
+                  {error && <p>error</p>}
+                </div>
               )}
             </Mutation>
           </div>
