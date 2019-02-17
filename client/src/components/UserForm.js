@@ -1,31 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
-import { Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
 import validator from 'validator'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const CREATE_USER = gql`
-  mutation CreateUser($name: String!, $email: EmailAddress!, $password: String!, $birthday: GraphQLDate, $isAdmin: Boolean) {
-    createUser(name: $name, email: $email, password: $password, birthday: $birthday, isAdmin: $isAdmin) {
-      id
-      name
-      email
-      birthday
-      isAdmin
-    }
-  }
-`
-
-export default class CreateUser extends Component {
+export default class UserForm extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      name: '',
-      email: '',
-      birthday: moment().format('YYYY-MM-DD'),
-      isAdmin: false,
+      name: this.props.name,
+      email: this.props.email,
+      birthday: this.props.birthday,
+      isAdmin: this.props.isAdmin,
       password: '',
       passwordCheck: '',
       nameError: null,
@@ -144,22 +131,17 @@ export default class CreateUser extends Component {
             </div>
           </fieldset>
           <div>
-            <Mutation mutation={CREATE_USER} variables={{ name, email, birthday, isAdmin, password }}>
-              {(mutation, { error }) => (
-                <div>
-                  <input
-                    type="button"
-                    value="Create"
-                    disabled={!name || !email || !birthday || !password || !passwordCheck || nameError || emailError || birthdayError || passwordError || passwordCheckError}
-                    onClick={mutation}
-                  />
-                  {error && <p>error</p>}
-                </div>
-              )}
-            </Mutation>
+            <p>MUTATION</p>
           </div>
         </form>
       </div>
     )
   }
+}
+
+UserForm.propTypes = {
+  name: PropTypes.string,
+  birthday: PropTypes.string,
+  email: PropTypes.string,
+  isAdmin: PropTypes.bool
 }

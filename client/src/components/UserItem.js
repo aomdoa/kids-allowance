@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-export default class User extends Component {
+export default class UserItem extends Component {
   render () {
     const { id, name, birthday, email } = this.props.user
     return (
@@ -15,7 +15,7 @@ export default class User extends Component {
   }
 }
 
-User.propTypes = {
+UserItem.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
