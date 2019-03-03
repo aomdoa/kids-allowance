@@ -7,7 +7,7 @@ import AccountList from './AccountList'
 import CreateAccount from './CreateAccount'
 import UserList from './UserList'
 import UserCreate from './UserCreate'
-import UserModify from './UserModify'
+import UserDetail from './UserDetail'
 
 export default class App extends Component {
   render () {
@@ -23,7 +23,7 @@ export default class App extends Component {
             <Route exact path="/accounts/create" component={CreateAccount} />
             <Route exact path="/users" component={UserList} />
             <Route exact path="/users/create" component={UserCreate} />
-            <Route exact path="/users/edit/:id" component={UserModify} />
+            <Route exact path="/users/detail/:id" component={UserDetail} />
           </Switch>
         </div>
       </div>

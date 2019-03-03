@@ -1,5 +1,12 @@
 import { getUser } from '../utils'
 
+async function user (parent, args, context) {
+  getUser(context)
+  return context.prisma.user({
+    id: args.id
+  })
+}
+
 async function users (parent, args, context) {
   getUser(context)
   return context.prisma.users()
@@ -30,6 +37,7 @@ async function transactions (parent, args, context) {
 }
 
 export default {
+  user,
   users,
   accounts,
   transactions

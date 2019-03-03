@@ -15,7 +15,22 @@ const GET_USER = gql`
   }
 `
 
-export default class UserModify extends Component {
+export default class UserDetail extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      name: '',
+      email: '',
+      birthday: '1981-05-05',
+      password: '',
+      isAdmin: false,
+      isNameValid: false,
+      isEmailValid: false,
+      isBirthdayValid: false,
+      isPasswordValid: false
+    }
+  }
+
   render () {
     const { id } = this.props.match.params
     return (
