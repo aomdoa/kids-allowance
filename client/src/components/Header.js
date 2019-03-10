@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
-import { AUTH_TOKEN } from '../constants'
+import { getUser, logout } from '../utils'
 
 class Header extends Component {
   render () {
-    const authToken = window.localStorage.getItem(AUTH_TOKEN)
+    const user = getUser()
     return (
       <div>
-        {authToken ? (
+        {user ? (
           <div>
-            <Link to="/accounts">Accounts</Link>
-            <Link to="/users">Users</Link>
+            <Link to='/accounts'>Accounts</Link>
+            {user.isAdmin && (<Link to='/users'>Users</Link>)}
+            <Link to={`/users/edit/${user.id}`}>My Account</Link>
             <div onClick={() => {
-              window.localStorage.removeItem(AUTH_TOKEN)
+              logout()
               this.props.history.push('/')
             }}>logout</div>
           </div>
