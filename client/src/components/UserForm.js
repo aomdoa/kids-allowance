@@ -40,7 +40,7 @@ export default class UserForm extends Component {
     return (
       <Form>
         <fieldset>
-          <legend>Create User</legend>
+          <legend>{userId ? 'Edit' : 'Create'} User</legend>
           <div>
             <label htmlFor="name">Name:</label>
             <Field name="name" validate={validateName} />

@@ -18,21 +18,19 @@ export default class UserEdit extends Component {
             return (
               <Mutation mutation={MODIFY_USER} key={id}>
                 {(mutate, { error }) => (
-                  <div>
-                    <Formik
-                      initialValues={_.assign(data.user, { password: '', passwordCheck: '' })}
-                      onSubmit={values => {
-                        if (values.password.length === 0) {
-                          delete values.password
-                        }
-                        mutate({ variables: values })
-                      }}
-                    >
-                      {(formikProps) => (
-                        <UserForm {...formikProps}/>
-                      )}
-                    </Formik>
-                  </div>
+                  <Formik
+                    initialValues={_.assign(data.user, { password: '', passwordCheck: '' })}
+                    onSubmit={values => {
+                      if (values.password.length === 0) {
+                        delete values.password
+                      }
+                      mutate({ variables: values })
+                    }}
+                  >
+                    {(formikProps) => (
+                      <UserForm {...formikProps}/>
+                    )}
+                  </Formik>
                 )}
               </Mutation>
             )
