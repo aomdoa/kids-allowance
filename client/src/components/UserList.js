@@ -1,20 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 import UserItem from './UserItem'
-
-const GET_USERS = gql`
-  {
-    users {
-      id
-      name
-      email
-      birthday
-      isAdmin
-    }
-  }
-`
+import { GET_USERS } from '../query'
 
 export default class UserList extends Component {
   render () {

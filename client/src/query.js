@@ -1,5 +1,17 @@
 import gql from 'graphql-tag'
 
+export const GET_USERS = gql`
+  {
+    users {
+      id
+      name
+      email
+      birthday
+      isAdmin
+    }
+  } 
+`
+
 export const GET_USER = gql`
   query($id: ID!) {
     user(id: $id) {
@@ -33,5 +45,33 @@ export const CREATE_USER = gql`
       birthday
       isAdmin
     }  
+  }
+`
+
+export const CREATE_ACCOUNT = gql`
+  mutation CreateAccount($name: String!, $ownerId: ID!, $allowance: NonNegativeFloat!, $interest: NonNegativeFloat!) {
+    createAccount(name: $name, ownerId: $ownerId, allowance: $allowance, interest: $interest) {
+      id
+      name
+      balance
+      allowance
+      interest
+    }
+  }
+`
+
+export const GET_ACCOUNTS = gql`
+  {
+    accounts {
+      id
+      name
+      balance
+      allowance
+      interest
+      user {
+        id
+        name
+      }
+    }
   }
 `

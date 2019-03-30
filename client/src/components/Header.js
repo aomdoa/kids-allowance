@@ -14,10 +14,10 @@ class Header extends Component {
             <Link to='/accounts'>Accounts</Link>
             {user.isAdmin && (<Link to='/users'>Users</Link>)}
             <Link to={`/users/edit/${user.id}`}>My Account</Link>
-            <div onClick={() => {
+            <a href="javascript:;" onClick={() => {
               logout()
               this.props.history.push('/')
-            }}>logout</div>
+            }}>Logout</a>
           </div>
         ) : null}
       </div>
