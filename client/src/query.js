@@ -60,7 +60,7 @@ export const CREATE_ACCOUNT = gql`
   }
 `
 
-export const GET_ACCOUNTS = gql`
+export const GET_ALL_ACCOUNTS = gql`
   {
     accounts {
       id
@@ -72,6 +72,30 @@ export const GET_ACCOUNTS = gql`
         id
         name
       }
+    }
+  }
+`
+
+export const GET_ACCOUNT = gql`
+  query($id: ID!) {
+    account(id: $id) {
+      id
+      name
+      balance
+      allowance
+      interest
+      user {
+        id
+        name
+      }
+    }
+  }
+`
+
+export const CREATE_TRANSACTION = gql`
+  mutation CreateTransaction($accountId: ID!, $description: String!, $amount: Float!) {
+    addTransaction(accountId: $accountId, description: $description, amount: $amount) {
+      id
     }
   }
 `

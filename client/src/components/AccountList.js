@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import { GET_ACCOUNTS } from '../query'
+import { GET_ALL_ACCOUNTS } from '../query'
 
 export default class AccountList extends Component {
   render () {
     return (
       <div>
-        <Query query={GET_ACCOUNTS}>
+        <Query query={GET_ALL_ACCOUNTS}>
           {({ loading, error, data }) => {
             if (loading) return <div>Fetching Users</div>
             if (error) return <div>ERROR</div>
@@ -17,7 +17,7 @@ export default class AccountList extends Component {
                   return (
                     <div key={account.id}>
                       <div><Link to={`/users/edit/${account.user.id}`}>{account.user.name}</Link></div>
-                      <div>{account.name}</div>
+                      <div><Link to={`/accounts/${account.id}`}>{account.name}</Link></div>
                       <div>{account.balance}</div>
                       <div>Credit</div>
                       <div>Debit</div>

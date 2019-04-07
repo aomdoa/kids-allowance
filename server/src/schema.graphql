@@ -4,8 +4,9 @@ scalar NonNegativeFloat
 scalar DateTime
 
 type Query {
-  user(id: ID): User!
+  user(id: ID!): User!
   users: [User!]!
+  account(id: ID!): Account!
   accounts(userId: ID): [Account!]!
   transactions(accountId: ID!, skip: Int, first: Int): [Transaction!]!
 }
