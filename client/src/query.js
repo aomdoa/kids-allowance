@@ -99,3 +99,14 @@ export const CREATE_TRANSACTION = gql`
     }
   }
 `
+
+export const GET_TRANSACTIONS = gql`
+  query($accountId: ID!, $first: Int, $skip: Int) {
+    transactions(accountId: $accountId, first: $first, skip: $skip) {
+      id
+      description
+      amount
+      date
+    }
+  }
+`
