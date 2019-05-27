@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { getUser, logout } from '../utils'
+import AppBar from '@material-ui/core/AppBar'
 
 class Header extends Component {
   render () {
     const user = getUser()
     return (
-      <div>
+      <AppBar position="static">
         {user ? (
           <div>
             <Link to='/accounts'>Accounts</Link>
@@ -20,7 +21,7 @@ class Header extends Component {
             }}>Logout</a>
           </div>
         ) : null}
-      </div>
+      </AppBar>
     )
   }
 }
