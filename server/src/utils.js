@@ -10,3 +10,15 @@ export function getUser (context) {
 
   throw new Error('Not authenticated')
 }
+
+export async function transaction (prisma, account, amount, description) {
+  await prisma.updateAccount({
+    data: { balance: account.balance + amount },
+    where: { id: account.id }
+  })
+  await prisma.createTransaction({
+    description: description,
+    amount: amount,
+    account: { connect: { id: account.id } }
+  })
+}
