@@ -18,7 +18,7 @@
     "react-number-format": "^4.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "proxy": "http://localhost:5000/",
   "scripts": {
